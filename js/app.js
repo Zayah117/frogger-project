@@ -16,7 +16,12 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
-    this.x += (this.speed * dt);
+    if (this.x >= 505) {
+    	this.x = -83;
+    }
+    else {
+    	this.x += (this.speed * dt);
+    }
     // TODO handle collision with player
 };
 
@@ -31,6 +36,8 @@ Enemy.prototype.render = function() {
 var Player = function(x, y) {
 	this.x = x;
 	this.y = y;
+	this.x_move = 101;
+	this.y_move = 83;
 	this.sprite = 'images/char-cat-girl.png'
 };
 
@@ -44,9 +51,17 @@ Player.prototype.render = function() {
 
 Player.prototype.handleInput = function(key) {
 	// TODO the stuff in here
-	console.log(key);
 	if (key == 'up') {
-		console.log("Going up!");
+		this.y -= this.y_move;
+	}
+	if (key == 'down') {
+		this.y += this.y_move;
+	}
+	if (key == 'left') {
+		this.x -= this.x_move;
+	}
+	if (key == 'right') {
+		this.x += this.x_move;
 	}
 };
 
@@ -54,10 +69,10 @@ Player.prototype.handleInput = function(key) {
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
-player = new Player(200, 380);
-enemy1 = new Enemy(0, 53, 0);
-enemy2 = new Enemy(0, 136, 0);
-enemy3 = new Enemy(0, 219, 0);
+player = new Player(200, 380, 83);
+enemy1 = new Enemy(0, 53, 300);
+enemy2 = new Enemy(0, 136, 500);
+enemy3 = new Enemy(0, 219, 200);
 allEnemies = [enemy1, enemy2, enemy3];
 
 
