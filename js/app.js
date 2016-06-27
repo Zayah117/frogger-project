@@ -27,20 +27,21 @@ Enemy.prototype.render = function() {
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
-var Player = function() {
-
+var Player = function(loc) {
+	this.loc = loc;
+	this.sprite = 'images/char-cat-girl.png'
 };
 
 Player.prototype.update = function() {
-
+	// TODO update player location
 };
 
 Player.prototype.render = function() {
-
+	ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
 Player.prototype.handleInput = function() {
-
+	// TODO the stuff in here
 };
 
 
