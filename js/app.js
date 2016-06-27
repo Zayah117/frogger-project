@@ -44,8 +44,13 @@ var Player = function(x, y) {
 	this.sprite = 'images/char-cat-girl.png'
 };
 
+Player.prototype.reset = function() {
+	this.x = 200;
+	this.y = 380;
+};
+
 Player.prototype.update = function() {
-	// TODO
+	// TODO handle collision with enemy
 };
 
 Player.prototype.render = function() {
@@ -86,6 +91,9 @@ Player.prototype.handleInput = function(key) {
 			this.x += this.x_move;
 		};
 	};
+	if (this.y < 48) {
+		this.reset();
+	}
 	console.log("x: " + this.x + " y: " + this.y);
 };
 
@@ -93,7 +101,7 @@ Player.prototype.handleInput = function(key) {
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
-player = new Player(200, 380, 83);
+player = new Player(200, 380);
 enemy1 = new Enemy(0, 53, 300);
 enemy2 = new Enemy(0, 136, 500);
 enemy3 = new Enemy(0, 219, 200);
