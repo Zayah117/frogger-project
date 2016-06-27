@@ -16,6 +16,9 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
+
+    // If the bug went off the screen, move him back to the
+    // left. Otherwise move normally.
     if (this.x >= 505) {
     	this.x = -83;
     }
@@ -42,7 +45,7 @@ var Player = function(x, y) {
 };
 
 Player.prototype.update = function() {
-	// TODO update player location
+	// TODO
 };
 
 Player.prototype.render = function() {
@@ -50,19 +53,40 @@ Player.prototype.render = function() {
 };
 
 Player.prototype.handleInput = function(key) {
-	// TODO the stuff in here
 	if (key == 'up') {
-		this.y -= this.y_move;
-	}
+		if (this.y <= -35) {
+			this.y += 0;
+		}
+		else {
+			this.y -= this.y_move;
+		};
+	};
 	if (key == 'down') {
-		this.y += this.y_move;
-	}
+		if (this.y >= 380) {
+			this.y += 0;
+		}
+		else {
+			this.y += this.y_move;
+		};
+		
+	};
 	if (key == 'left') {
-		this.x -= this.x_move;
-	}
+		if (this.x <= -2) {
+			this.x += 0;
+		}
+		else {
+			this.x -= this.x_move;
+		};
+	};
 	if (key == 'right') {
-		this.x += this.x_move;
-	}
+		if (this.x >= 402) {
+			this.x += 0;
+		}
+		else {
+			this.x += this.x_move;
+		};
+	};
+	console.log("x: " + this.x + " y: " + this.y);
 };
 
 
