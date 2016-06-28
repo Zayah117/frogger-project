@@ -30,7 +30,10 @@ Enemy.prototype.update = function(dt) {
 	// If the bug went off the screen, move him back to the
 	// left. Otherwise move normally.
 	if (this.x >= 505) {
-		this.x = -83;
+		// Move car to random position to left of screen
+		this.x = Math.floor(Math.random() * 200) - 300;
+		// Randomly change car speed
+		this.speed = this.changeSpeed();
 	}
 	else {
 		this.x += (this.speed * dt);
@@ -44,6 +47,10 @@ Enemy.prototype.update = function(dt) {
 Enemy.prototype.render = function() {
 	ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
+
+Enemy.prototype.changeSpeed = function() {
+	return Math.floor(Math.random() * 300) + 200;
+}
 
 // The class for the player character
 var Player = function(x, y) {
@@ -155,9 +162,9 @@ Player.prototype.updateScore = function() {
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
 player = new Player(200, 380);
-enemy1 = new Enemy(0, 53, 300);
-enemy2 = new Enemy(0, 136, 500);
-enemy3 = new Enemy(0, 219, 200);
+enemy1 = new Enemy(-90, 53, Enemy.prototype.changeSpeed());
+enemy2 = new Enemy(-90, 136, Enemy.prototype.changeSpeed());
+enemy3 = new Enemy(-90, 219, Enemy.prototype.changeSpeed());
 allEnemies = [enemy1, enemy2, enemy3];
 
 
