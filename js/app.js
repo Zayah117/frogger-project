@@ -8,6 +8,20 @@ var Enemy = function(x, y, speed) {
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
+    this.width = 70;
+    this.height = 20;
+};
+
+Enemy.prototype.checkCollision = function () {
+	for (enemy = 0; enemy < allEnemies.length; enemy++) {
+		current_enemy = allEnemies[enemy];
+		if (player.x < current_enemy.x + current_enemy.width &&
+   			player.x + player.width > current_enemy.x &&
+   			player.y < current_enemy.y + current_enemy.height &&
+   			player.height + player.y > current_enemy.y) {
+			player.reset();
+		}
+	}
 };
 
 // Update the enemy's position, required method for game
@@ -26,6 +40,7 @@ Enemy.prototype.update = function(dt) {
     	this.x += (this.speed * dt);
     }
     // TODO handle collision with player
+    Enemy.prototype.checkCollision();
 };
 
 // Draw the enemy on the screen, required method for game
@@ -42,6 +57,8 @@ var Player = function(x, y) {
 	this.x_move = 101;
 	this.y_move = 83;
 	this.sprite = 'images/char-cat-girl.png'
+	this.width = 40;
+	this.height = 20;
 };
 
 Player.prototype.reset = function() {
@@ -94,7 +111,7 @@ Player.prototype.handleInput = function(key) {
 	if (this.y < 48) {
 		this.reset();
 	}
-	console.log("x: " + this.x + " y: " + this.y);
+	//console.log("x: " + this.x + " y: " + this.y);
 };
 
 
