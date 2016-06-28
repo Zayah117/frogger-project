@@ -8,6 +8,8 @@ var Enemy = function(x, y, speed) {
     this.sprite = 'images/enemy-bug.png';
 };
 
+// Checks if enemy collides with player
+// If so, reset player positon and score
 Enemy.prototype.checkCollision = function () {
 	for (enemy = 0; enemy < allEnemies.length; enemy++) {
 		current_enemy = allEnemies[enemy];
@@ -22,13 +24,9 @@ Enemy.prototype.checkCollision = function () {
 	}
 };
 
-// Update the enemy's position, required method for game
+// Update the enemy's position
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
-    // You should multiply any movement by the dt parameter
-    // which will ensure the game runs at the same speed for
-    // all computers.
-
     // If the bug went off the screen, move him back to the
     // left. Otherwise move normally.
     if (this.x >= 505) {
@@ -37,17 +35,17 @@ Enemy.prototype.update = function(dt) {
     else {
     	this.x += (this.speed * dt);
     }
+
+    // Check player collision
     Enemy.prototype.checkCollision();
 };
 
-// Draw the enemy on the screen, required method for game
+// Draw the enemy on the screen
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-// Now write your own player class
-// This class requires an update(), render() and
-// a handleInput() method.
+// The class for the player character
 var Player = function(x, y) {
 	this.score = 0;
 	this.x = x;
@@ -63,19 +61,24 @@ var Player = function(x, y) {
 	this.sprite = 'images/char-cat-girl.png'
 };
 
+// Resets player position to the starting point
 Player.prototype.reset = function() {
 	this.x = 200;
 	this.y = 380;
 };
 
+// Keeping this incase needed
 Player.prototype.update = function() {
-	// In case I need the player to collide with something
+	// stuff
 };
 
+// Draw player to screen
 Player.prototype.render = function() {
 	ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
+// Checks if movement is valid and
+// moves player character
 Player.prototype.handleInput = function(key) {
 	if (key == 'up') {
 		if (this.validMove(key)) {
@@ -142,12 +145,13 @@ Player.prototype.validMove = function(key) {
 	};
 }
 
+// Updates the score heading
 Player.prototype.updateScore = function() {
 	document.getElementById("score-heading").innerHTML = "Score: " + this.score;
 }
 
 
-// Now instantiate your objects.
+// Instantiating objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
 player = new Player(200, 380);
