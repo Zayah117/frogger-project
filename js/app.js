@@ -3,7 +3,7 @@ var Enemy = function(x, y, speed) {
 	this.x = x;
 	this.y = y;
 	this.speed = speed;
-	this.width = 70;
+	this.width = 90;
 	this.height = 20;
 	this.sprite = 'images/red-car-big.png';
 };
