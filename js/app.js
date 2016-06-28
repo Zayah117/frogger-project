@@ -4,16 +4,12 @@ function updateScore(score) {
 
 // Enemies our player must avoid
 var Enemy = function(x, y, speed) {
-    // Variables applied to each of our instances go here,
-    // we've provided one for you to get started
     this.x = x;
     this.y = y;
     this.speed = speed;
-    // The image/sprite for our enemies, this uses
-    // a helper we've provided to easily load images
-    this.sprite = 'images/enemy-bug.png';
     this.width = 70;
     this.height = 20;
+    this.sprite = 'images/enemy-bug.png';
 };
 
 Enemy.prototype.checkCollision = function () {
@@ -25,7 +21,7 @@ Enemy.prototype.checkCollision = function () {
    			player.height + player.y > current_enemy.y) {
 			player.reset();
 			player.score = 0;
-			updateScore(player.score);
+			player.updateScore();
 		}
 	}
 };
@@ -45,7 +41,6 @@ Enemy.prototype.update = function(dt) {
     else {
     	this.x += (this.speed * dt);
     }
-    // TODO handle collision with player
     Enemy.prototype.checkCollision();
 };
 
@@ -63,9 +58,13 @@ var Player = function(x, y) {
 	this.y = y;
 	this.x_move = 101;
 	this.y_move = 83;
-	this.sprite = 'images/char-cat-girl.png'
+	this.min_y = -35;
+	this.max_y = 380;
+	this.min_x = -2;
+	this.max_x = 402;
 	this.width = 40;
 	this.height = 20;
+	this.sprite = 'images/char-cat-girl.png'
 };
 
 Player.prototype.reset = function() {
@@ -74,7 +73,7 @@ Player.prototype.reset = function() {
 };
 
 Player.prototype.update = function() {
-	// TODO handle collision with enemy
+	// In case I need the player to collide with something
 };
 
 Player.prototype.render = function() {
@@ -83,7 +82,7 @@ Player.prototype.render = function() {
 
 Player.prototype.handleInput = function(key) {
 	if (key == 'up') {
-		if (this.y <= -35) {
+		if (this.y <= this.min_y) {
 			this.y += 0;
 		}
 		else {
@@ -91,7 +90,7 @@ Player.prototype.handleInput = function(key) {
 		};
 	};
 	if (key == 'down') {
-		if (this.y >= 380) {
+		if (this.y >= this.max_y) {
 			this.y += 0;
 		}
 		else {
@@ -100,7 +99,7 @@ Player.prototype.handleInput = function(key) {
 		
 	};
 	if (key == 'left') {
-		if (this.x <= -2) {
+		if (this.x <= this.min_x) {
 			this.x += 0;
 		}
 		else {
@@ -108,7 +107,7 @@ Player.prototype.handleInput = function(key) {
 		};
 	};
 	if (key == 'right') {
-		if (this.x >= 402) {
+		if (this.x >= this.max_x) {
 			this.x += 0;
 		}
 		else {
@@ -117,11 +116,14 @@ Player.prototype.handleInput = function(key) {
 	};
 	if (this.y < 48) {
 		this.reset();
-		player.score += 1;
-		updateScore(player.score);
+		this.score += 1;
+		this.updateScore();
 	}
-	//console.log("x: " + this.x + " y: " + this.y);
 };
+
+Player.prototype.updateScore = function() {
+	document.getElementById("score-heading").innerHTML = "Score: " + this.score;
+}
 
 
 // Now instantiate your objects.
