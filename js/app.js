@@ -5,7 +5,7 @@ var Enemy = function(x, y, speed) {
 	this.speed = speed;
 	this.width = 70;
 	this.height = 20;
-	this.sprite = 'images/enemy-bug.png';
+	this.sprite = 'images/red-car-big.png';
 };
 
 // Checks if enemy collides with player
