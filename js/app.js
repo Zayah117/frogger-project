@@ -1,11 +1,11 @@
 // Enemies our player must avoid
 var Enemy = function(x, y, speed) {
-    this.x = x;
-    this.y = y;
-    this.speed = speed;
-    this.width = 70;
-    this.height = 20;
-    this.sprite = 'images/enemy-bug.png';
+	this.x = x;
+	this.y = y;
+	this.speed = speed;
+	this.width = 70;
+	this.height = 20;
+	this.sprite = 'images/enemy-bug.png';
 };
 
 // Checks if enemy collides with player
@@ -14,9 +14,9 @@ Enemy.prototype.checkCollision = function () {
 	for (enemy = 0; enemy < allEnemies.length; enemy++) {
 		current_enemy = allEnemies[enemy];
 		if (player.x < current_enemy.x + current_enemy.width &&
-   			player.x + player.width > current_enemy.x &&
-   			player.y < current_enemy.y + current_enemy.height &&
-   			player.height + player.y > current_enemy.y) {
+			player.x + player.width > current_enemy.x &&
+			player.y < current_enemy.y + current_enemy.height &&
+			player.height + player.y > current_enemy.y) {
 			player.reset();
 			player.score = 0;
 			player.updateScore();
@@ -27,22 +27,22 @@ Enemy.prototype.checkCollision = function () {
 // Update the enemy's position
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
-    // If the bug went off the screen, move him back to the
-    // left. Otherwise move normally.
-    if (this.x >= 505) {
-    	this.x = -83;
-    }
-    else {
-    	this.x += (this.speed * dt);
-    }
+	// If the bug went off the screen, move him back to the
+	// left. Otherwise move normally.
+	if (this.x >= 505) {
+		this.x = -83;
+	}
+	else {
+		this.x += (this.speed * dt);
+	}
 
-    // Check player collision
-    Enemy.prototype.checkCollision();
+	// Check player collision
+	Enemy.prototype.checkCollision();
 };
 
 // Draw the enemy on the screen
 Enemy.prototype.render = function() {
-    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+	ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
 // The class for the player character
@@ -165,13 +165,13 @@ allEnemies = [enemy1, enemy2, enemy3];
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
 document.addEventListener('keyup', function(e) {
-    var allowedKeys = {
-        37: 'left',
-        38: 'up',
-        39: 'right',
-        40: 'down'
-    };
+	var allowedKeys = {
+		37: 'left',
+		38: 'up',
+		39: 'right',
+		40: 'down'
+	};
 
-    player.handleInput(allowedKeys[e.keyCode]);
+	player.handleInput(allowedKeys[e.keyCode]);
 });
 
