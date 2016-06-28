@@ -82,35 +82,23 @@ Player.prototype.render = function() {
 
 Player.prototype.handleInput = function(key) {
 	if (key == 'up') {
-		if (this.y <= this.min_y) {
-			this.y += 0;
-		}
-		else {
+		if (this.validMove(key)) {
 			this.y -= this.y_move;
 		};
 	};
 	if (key == 'down') {
-		if (this.y >= this.max_y) {
-			this.y += 0;
-		}
-		else {
+		if (this.validMove(key)) {
 			this.y += this.y_move;
 		};
 		
 	};
 	if (key == 'left') {
-		if (this.x <= this.min_x) {
-			this.x += 0;
-		}
-		else {
+		if (this.validMove(key)) {
 			this.x -= this.x_move;
 		};
 	};
 	if (key == 'right') {
-		if (this.x >= this.max_x) {
-			this.x += 0;
-		}
-		else {
+		if (this.validMove(key)) {
 			this.x += this.x_move;
 		};
 	};
@@ -120,6 +108,43 @@ Player.prototype.handleInput = function(key) {
 		this.updateScore();
 	}
 };
+
+// Checks to make sure player does not move off screen
+Player.prototype.validMove = function(key) {
+	if (key == 'up') {
+		if (this.y <= this.min_y) {
+			return false;
+		}
+		else {
+			return true;
+		};
+	};
+	if (key == 'down') {
+		if (this.y >= this.max_y) {
+			return false;
+		}
+		else {
+			return true;
+		};
+		
+	};
+	if (key == 'left') {
+		if (this.x <= this.min_x) {
+			return false;
+		}
+		else {
+			return true;
+		};
+	};
+	if (key == 'right') {
+		if (this.x >= this.max_x) {
+			return false;
+		}
+		else {
+			return true;
+		};
+	};
+}
 
 Player.prototype.updateScore = function() {
 	document.getElementById("score-heading").innerHTML = "Score: " + this.score;
