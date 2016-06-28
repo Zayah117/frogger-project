@@ -1,7 +1,3 @@
-function updateScore(score) {
-	document.getElementById("score-heading").innerHTML = "Score: " + score;
-}
-
 // Enemies our player must avoid
 var Enemy = function(x, y, speed) {
     this.x = x;
