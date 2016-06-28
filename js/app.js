@@ -1,3 +1,7 @@
+function updateScore(score) {
+	document.getElementById("score-heading").innerHTML = "Score: " + score;
+}
+
 // Enemies our player must avoid
 var Enemy = function(x, y, speed) {
     // Variables applied to each of our instances go here,
@@ -20,6 +24,8 @@ Enemy.prototype.checkCollision = function () {
    			player.y < current_enemy.y + current_enemy.height &&
    			player.height + player.y > current_enemy.y) {
 			player.reset();
+			player.score = 0;
+			updateScore(player.score);
 		}
 	}
 };
@@ -52,6 +58,7 @@ Enemy.prototype.render = function() {
 // This class requires an update(), render() and
 // a handleInput() method.
 var Player = function(x, y) {
+	this.score = 0;
 	this.x = x;
 	this.y = y;
 	this.x_move = 101;
@@ -110,6 +117,8 @@ Player.prototype.handleInput = function(key) {
 	};
 	if (this.y < 48) {
 		this.reset();
+		player.score += 1;
+		updateScore(player.score);
 	}
 	//console.log("x: " + this.x + " y: " + this.y);
 };
@@ -138,3 +147,4 @@ document.addEventListener('keyup', function(e) {
 
     player.handleInput(allowedKeys[e.keyCode]);
 });
+
