@@ -1,16 +1,19 @@
+// Array of all possible enemy sprites
 spriteArray = [ 'images/red-car.png',
-	   			'images/black-car.png',
-        		'images/blue-car.png',
-        		'images/blue-truck.png',
-        		'images/food-truck.png',
-        		'images/ghost-car.png',
-        		'images/gray-car.png',
-        		'images/green-car.png',
-        		'images/green-truck.png',
-        		'images/purple-car.png',
-        		'images/red-truck.png',
-        		'images/yellow-car.png',
-        		'images/yellow-truck.png'];
+				'images/black-car.png',
+				'images/blue-car.png',
+				'images/blue-truck.png',
+				'images/food-truck.png',
+				'images/ghost-car.png',
+				'images/gray-car.png',
+				'images/green-car.png',
+				'images/green-truck.png',
+				'images/purple-car.png',
+				'images/red-truck.png',
+				'images/yellow-car.png',
+				'images/yellow-truck.png',
+				'images/police-car.png',
+				'images/fight-truck.png'];
 
 // Enemies our player must avoid
 var Enemy = function(x, y, speed) {
@@ -26,11 +29,13 @@ var Enemy = function(x, y, speed) {
 // If so, reset player positon and score
 Enemy.prototype.checkCollision = function () {
 	for (enemy = 0; enemy < allEnemies.length; enemy++) {
-		current_enemy = allEnemies[enemy];
-		if (player.x < current_enemy.x + current_enemy.width &&
-			player.x + player.width > current_enemy.x &&
-			player.y < current_enemy.y + current_enemy.height &&
-			player.height + player.y > current_enemy.y) {
+		currentEnemy = allEnemies[enemy];
+
+		if (player.x < currentEnemy.x + currentEnemy.width && 
+			player.x + player.width > currentEnemy.x && 
+			player.y < currentEnemy.y + currentEnemy.height &&
+			player.height + player.y > currentEnemy.y) {
+
 			player.reset();
 			player.score = 0;
 			player.updateScore();
@@ -46,11 +51,10 @@ Enemy.prototype.update = function(dt) {
 	if (this.x >= 505) {
 		// Move car to random position to left of screen
 		this.x = Math.floor(Math.random() * 200) - 300;
-		// Randomly change car speed
+		// Randomly change car speed and color
 		this.speed = this.changeSpeed();
 		this.sprite = this.changeColor();
-	}
-	else {
+	} else {
 		this.x += (this.speed * dt);
 	}
 
@@ -63,25 +67,28 @@ Enemy.prototype.render = function() {
 	ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
+// Changes car speed to random number
 Enemy.prototype.changeSpeed = function() {
 	return Math.floor(Math.random() * 300) + 200;
-}
+};
 
+// Changes car sprite to random sprite
 Enemy.prototype.changeColor = function() {
 	return spriteArray[Math.floor(Math.random()*spriteArray.length)];
-}
+};
 
 // The class for the player character
 var Player = function(x, y) {
 	this.score = 0;
+	this.highScore = 0;
 	this.x = x;
 	this.y = y;
-	this.x_move = 101;
-	this.y_move = 83;
-	this.min_y = -35;
-	this.max_y = 380;
-	this.min_x = -2;
-	this.max_x = 402;
+	this.xMove = 101;
+	this.yMove = 83;
+	this.minY = -35;
+	this.maxY = 380;
+	this.minX = -2;
+	this.maxX = 402;
 	this.width = 40;
 	this.height = 20;
 	this.sprite = 'images/char-frog.png'
@@ -95,7 +102,7 @@ Player.prototype.reset = function() {
 
 // Keeping this incase needed
 Player.prototype.update = function() {
-	// stuff
+	// TODO
 };
 
 // Draw player to screen
@@ -108,28 +115,34 @@ Player.prototype.render = function() {
 Player.prototype.handleInput = function(key) {
 	if (key == 'up') {
 		if (this.validMove(key)) {
-			this.y -= this.y_move;
-		};
-	};
+			this.y -= this.yMove;
+		}
+	}
 	if (key == 'down') {
 		if (this.validMove(key)) {
-			this.y += this.y_move;
-		};
+			this.y += this.yMove;
+		}
 		
-	};
+	}
 	if (key == 'left') {
 		if (this.validMove(key)) {
-			this.x -= this.x_move;
-		};
-	};
+			this.x -= this.xMove;
+		}
+	}
 	if (key == 'right') {
 		if (this.validMove(key)) {
-			this.x += this.x_move;
-		};
-	};
+			this.x += this.xMove;
+		}
+	}
+
+	// Checks if player reaches finish line
+	// and updates score
 	if (this.y < 48) {
 		this.reset();
 		this.score += 1;
+		if (this.score > this.highScore) {
+			this.highScore = this.score;
+		}
 		this.updateScore();
 	}
 };
@@ -137,44 +150,41 @@ Player.prototype.handleInput = function(key) {
 // Checks to make sure player does not move off screen
 Player.prototype.validMove = function(key) {
 	if (key == 'up') {
-		if (this.y <= this.min_y) {
+		if (this.y <= this.minY) {
 			return false;
-		}
-		else {
+		} else {
 			return true;
-		};
-	};
+		}
+	}
 	if (key == 'down') {
-		if (this.y >= this.max_y) {
+		if (this.y >= this.maxY) {
 			return false;
-		}
-		else {
+		} else {
 			return true;
-		};
+		}
 		
-	};
+	}
 	if (key == 'left') {
-		if (this.x <= this.min_x) {
+		if (this.x <= this.minX) {
 			return false;
-		}
-		else {
+		} else {
 			return true;
-		};
-	};
+		}
+	}
 	if (key == 'right') {
-		if (this.x >= this.max_x) {
+		if (this.x >= this.maxX) {
 			return false;
-		}
-		else {
+		} else {
 			return true;
-		};
-	};
-}
+		}
+	}
+};
 
 // Updates the score heading
 Player.prototype.updateScore = function() {
-	document.getElementById("score-heading").innerHTML = "Score: " + this.score;
-}
+	document.getElementById('score-heading').innerHTML = 'Score: ' + this.score;
+	document.getElementById('high-score-heading').innerHTML = 'Highscore: ' + this.highScore;
+};
 
 
 // Instantiating objects.
