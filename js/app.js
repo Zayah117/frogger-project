@@ -1,3 +1,4 @@
+// Array of all possible enemy sprites
 spriteArray = [ 'images/red-car.png',
 	   			'images/black-car.png',
         		'images/blue-car.png',
@@ -48,7 +49,7 @@ Enemy.prototype.update = function(dt) {
 	if (this.x >= 505) {
 		// Move car to random position to left of screen
 		this.x = Math.floor(Math.random() * 200) - 300;
-		// Randomly change car speed
+		// Randomly change car speed and color
 		this.speed = this.changeSpeed();
 		this.sprite = this.changeColor();
 	}
@@ -65,10 +66,12 @@ Enemy.prototype.render = function() {
 	ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
+// Changes car speed to random number
 Enemy.prototype.changeSpeed = function() {
 	return Math.floor(Math.random() * 300) + 200;
 }
 
+// Changes car sprite to random sprite
 Enemy.prototype.changeColor = function() {
 	return spriteArray[Math.floor(Math.random()*spriteArray.length)];
 }
@@ -98,7 +101,7 @@ Player.prototype.reset = function() {
 
 // Keeping this incase needed
 Player.prototype.update = function() {
-	// stuff
+	// TODO
 };
 
 // Draw player to screen
@@ -130,6 +133,9 @@ Player.prototype.handleInput = function(key) {
 			this.x += this.x_move;
 		};
 	};
+
+	// Checks if player reaches finish line
+	// and updates score
 	if (this.y < 48) {
 		this.reset();
 		this.score += 1;
