@@ -10,7 +10,9 @@ spriteArray = [ 'images/red-car.png',
         		'images/purple-car.png',
         		'images/red-truck.png',
         		'images/yellow-car.png',
-        		'images/yellow-truck.png'];
+        		'images/yellow-truck.png',
+        		'images/police-car.png',
+        		'images/fight-truck.png'];
 
 // Enemies our player must avoid
 var Enemy = function(x, y, speed) {

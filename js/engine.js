@@ -185,6 +185,8 @@ var Engine = (function(global) {
         'images/red-truck.png',
         'images/yellow-car.png',
         'images/yellow-truck.png',
+        'images/police-car.png',
+        'images/fight-truck.png',
         'images/char-frog.png'
     ]);
     Resources.onReady(init);
