@@ -1,6 +1,6 @@
 # Frogger!
 
-(https://raw.githubusercontent.com/Zayah117/frogger-project/master/images/screenshot.png)
+![screenshot](https://raw.githubusercontent.com/Zayah117/frogger-project/master/images/screenshot.png)
 
 This is a project for Udacity's Front-End Development course. The starter code for this project can be found [here.](https://github.com/udacity/frontend-nanodegree-arcade-game)
 
