@@ -182,8 +182,8 @@ Player.prototype.validMove = function(key) {
 
 // Updates the score heading
 Player.prototype.updateScore = function() {
-	document.getElementById("score-heading").innerHTML = "Score: " + this.score;
-	document.getElementById("high-score-heading").innerHTML = "Highscore: " + this.highScore;
+	document.getElementById('score-heading').innerHTML = 'Score: ' + this.score;
+	document.getElementById('high-score-heading').innerHTML = 'Highscore: ' + this.highScore;
 };
 
 
