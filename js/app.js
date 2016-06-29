@@ -30,10 +30,12 @@ var Enemy = function(x, y, speed) {
 Enemy.prototype.checkCollision = function () {
 	for (enemy = 0; enemy < allEnemies.length; enemy++) {
 		current_enemy = allEnemies[enemy];
-		if (player.x < current_enemy.x + current_enemy.width &&
-			player.x + player.width > current_enemy.x &&
+
+		if (player.x < current_enemy.x + current_enemy.width && 
+			player.x + player.width > current_enemy.x && 
 			player.y < current_enemy.y + current_enemy.height &&
 			player.height + player.y > current_enemy.y) {
+
 			player.reset();
 			player.score = 0;
 			player.updateScore();
@@ -69,12 +71,12 @@ Enemy.prototype.render = function() {
 // Changes car speed to random number
 Enemy.prototype.changeSpeed = function() {
 	return Math.floor(Math.random() * 300) + 200;
-}
+};
 
 // Changes car sprite to random sprite
 Enemy.prototype.changeColor = function() {
 	return spriteArray[Math.floor(Math.random()*spriteArray.length)];
-}
+};
 
 // The class for the player character
 var Player = function(x, y) {
@@ -115,24 +117,24 @@ Player.prototype.handleInput = function(key) {
 	if (key == 'up') {
 		if (this.validMove(key)) {
 			this.y -= this.y_move;
-		};
-	};
+		}
+	}
 	if (key == 'down') {
 		if (this.validMove(key)) {
 			this.y += this.y_move;
-		};
+		}
 		
-	};
+	}
 	if (key == 'left') {
 		if (this.validMove(key)) {
 			this.x -= this.x_move;
-		};
-	};
+		}
+	}
 	if (key == 'right') {
 		if (this.validMove(key)) {
 			this.x += this.x_move;
-		};
-	};
+		}
+	}
 
 	// Checks if player reaches finish line
 	// and updates score
@@ -154,40 +156,40 @@ Player.prototype.validMove = function(key) {
 		}
 		else {
 			return true;
-		};
-	};
+		}
+	}
 	if (key == 'down') {
 		if (this.y >= this.max_y) {
 			return false;
 		}
 		else {
 			return true;
-		};
+		}
 		
-	};
+	}
 	if (key == 'left') {
 		if (this.x <= this.min_x) {
 			return false;
 		}
 		else {
 			return true;
-		};
-	};
+		}
+	}
 	if (key == 'right') {
 		if (this.x >= this.max_x) {
 			return false;
 		}
 		else {
 			return true;
-		};
-	};
-}
+		}
+	}
+};
 
 // Updates the score heading
 Player.prototype.updateScore = function() {
 	document.getElementById("score-heading").innerHTML = "Score: " + this.score;
 	document.getElementById("high-score-heading").innerHTML = "Highscore: " + this.high_score;
-}
+};
 
 
 // Instantiating objects.
