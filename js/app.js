@@ -29,12 +29,12 @@ var Enemy = function(x, y, speed) {
 // If so, reset player positon and score
 Enemy.prototype.checkCollision = function () {
 	for (enemy = 0; enemy < allEnemies.length; enemy++) {
-		current_enemy = allEnemies[enemy];
+		currentEnemy = allEnemies[enemy];
 
-		if (player.x < current_enemy.x + current_enemy.width && 
-			player.x + player.width > current_enemy.x && 
-			player.y < current_enemy.y + current_enemy.height &&
-			player.height + player.y > current_enemy.y) {
+		if (player.x < currentEnemy.x + currentEnemy.width && 
+			player.x + player.width > currentEnemy.x && 
+			player.y < currentEnemy.y + currentEnemy.height &&
+			player.height + player.y > currentEnemy.y) {
 
 			player.reset();
 			player.score = 0;
@@ -81,15 +81,15 @@ Enemy.prototype.changeColor = function() {
 // The class for the player character
 var Player = function(x, y) {
 	this.score = 0;
-	this.high_score = 0;
+	this.highScore = 0;
 	this.x = x;
 	this.y = y;
-	this.x_move = 101;
-	this.y_move = 83;
-	this.min_y = -35;
-	this.max_y = 380;
-	this.min_x = -2;
-	this.max_x = 402;
+	this.xMove = 101;
+	this.yMove = 83;
+	this.minY = -35;
+	this.maxY = 380;
+	this.minX = -2;
+	this.maxX = 402;
 	this.width = 40;
 	this.height = 20;
 	this.sprite = 'images/char-frog.png'
@@ -116,23 +116,23 @@ Player.prototype.render = function() {
 Player.prototype.handleInput = function(key) {
 	if (key == 'up') {
 		if (this.validMove(key)) {
-			this.y -= this.y_move;
+			this.y -= this.yMove;
 		}
 	}
 	if (key == 'down') {
 		if (this.validMove(key)) {
-			this.y += this.y_move;
+			this.y += this.yMove;
 		}
 		
 	}
 	if (key == 'left') {
 		if (this.validMove(key)) {
-			this.x -= this.x_move;
+			this.x -= this.xMove;
 		}
 	}
 	if (key == 'right') {
 		if (this.validMove(key)) {
-			this.x += this.x_move;
+			this.x += this.xMove;
 		}
 	}
 
@@ -141,8 +141,8 @@ Player.prototype.handleInput = function(key) {
 	if (this.y < 48) {
 		this.reset();
 		this.score += 1;
-		if (this.score > this.high_score) {
-			this.high_score = this.score;
+		if (this.score > this.highScore) {
+			this.highScore = this.score;
 		}
 		this.updateScore();
 	}
@@ -151,7 +151,7 @@ Player.prototype.handleInput = function(key) {
 // Checks to make sure player does not move off screen
 Player.prototype.validMove = function(key) {
 	if (key == 'up') {
-		if (this.y <= this.min_y) {
+		if (this.y <= this.minY) {
 			return false;
 		}
 		else {
@@ -159,7 +159,7 @@ Player.prototype.validMove = function(key) {
 		}
 	}
 	if (key == 'down') {
-		if (this.y >= this.max_y) {
+		if (this.y >= this.maxY) {
 			return false;
 		}
 		else {
@@ -168,7 +168,7 @@ Player.prototype.validMove = function(key) {
 		
 	}
 	if (key == 'left') {
-		if (this.x <= this.min_x) {
+		if (this.x <= this.minX) {
 			return false;
 		}
 		else {
@@ -176,7 +176,7 @@ Player.prototype.validMove = function(key) {
 		}
 	}
 	if (key == 'right') {
-		if (this.x >= this.max_x) {
+		if (this.x >= this.maxX) {
 			return false;
 		}
 		else {
@@ -188,7 +188,7 @@ Player.prototype.validMove = function(key) {
 // Updates the score heading
 Player.prototype.updateScore = function() {
 	document.getElementById("score-heading").innerHTML = "Score: " + this.score;
-	document.getElementById("high-score-heading").innerHTML = "Highscore: " + this.high_score;
+	document.getElementById("high-score-heading").innerHTML = "Highscore: " + this.highScore;
 };
 
 
