@@ -76,6 +76,7 @@ Enemy.prototype.changeColor = function() {
 // The class for the player character
 var Player = function(x, y) {
 	this.score = 0;
+	this.high_score = 0;
 	this.x = x;
 	this.y = y;
 	this.x_move = 101;
@@ -132,6 +133,9 @@ Player.prototype.handleInput = function(key) {
 	if (this.y < 48) {
 		this.reset();
 		this.score += 1;
+		if (this.score > this.high_score) {
+			this.high_score = this.score;
+		}
 		this.updateScore();
 	}
 };
@@ -176,6 +180,7 @@ Player.prototype.validMove = function(key) {
 // Updates the score heading
 Player.prototype.updateScore = function() {
 	document.getElementById("score-heading").innerHTML = "Score: " + this.score;
+	document.getElementById("high-score-heading").innerHTML = "Highscore: " + this.high_score;
 }
 
 
