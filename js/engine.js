@@ -172,10 +172,20 @@ var Engine = (function(global) {
         'images/stone-block-bottom.png',
         'images/water-block.png',
         'images/grass-block.png',
-        'images/enemy-bug.png',
         'images/red-car.png',
-        'images/red-car-big.png',
-        'images/char-cat-girl.png'
+        'images/black-car.png',
+        'images/blue-car.png',
+        'images/blue-truck.png',
+        'images/food-truck.png',
+        'images/ghost-car.png',
+        'images/gray-car.png',
+        'images/green-car.png',
+        'images/green-truck.png',
+        'images/purple-car.png',
+        'images/red-truck.png',
+        'images/yellow-car.png',
+        'images/yellow-truck.png',
+        'images/char-frog.png'
     ]);
     Resources.onReady(init);
 

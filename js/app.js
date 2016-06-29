@@ -1,3 +1,17 @@
+spriteArray = [ 'images/red-car.png',
+	   			'images/black-car.png',
+        		'images/blue-car.png',
+        		'images/blue-truck.png',
+        		'images/food-truck.png',
+        		'images/ghost-car.png',
+        		'images/gray-car.png',
+        		'images/green-car.png',
+        		'images/green-truck.png',
+        		'images/purple-car.png',
+        		'images/red-truck.png',
+        		'images/yellow-car.png',
+        		'images/yellow-truck.png'];
+
 // Enemies our player must avoid
 var Enemy = function(x, y, speed) {
 	this.x = x;
@@ -5,7 +19,7 @@ var Enemy = function(x, y, speed) {
 	this.speed = speed;
 	this.width = 90;
 	this.height = 20;
-	this.sprite = 'images/red-car-big.png';
+	this.sprite = Enemy.prototype.changeColor();
 };
 
 // Checks if enemy collides with player
@@ -34,6 +48,7 @@ Enemy.prototype.update = function(dt) {
 		this.x = Math.floor(Math.random() * 200) - 300;
 		// Randomly change car speed
 		this.speed = this.changeSpeed();
+		this.sprite = this.changeColor();
 	}
 	else {
 		this.x += (this.speed * dt);
@@ -52,6 +67,10 @@ Enemy.prototype.changeSpeed = function() {
 	return Math.floor(Math.random() * 300) + 200;
 }
 
+Enemy.prototype.changeColor = function() {
+	return spriteArray[Math.floor(Math.random()*spriteArray.length)];
+}
+
 // The class for the player character
 var Player = function(x, y) {
 	this.score = 0;
@@ -65,13 +84,13 @@ var Player = function(x, y) {
 	this.max_x = 402;
 	this.width = 40;
 	this.height = 20;
-	this.sprite = 'images/char-cat-girl.png'
+	this.sprite = 'images/char-frog.png'
 };
 
 // Resets player position to the starting point
 Player.prototype.reset = function() {
 	this.x = 200;
-	this.y = 380;
+	this.y = 390;
 };
 
 // Keeping this incase needed
@@ -161,7 +180,7 @@ Player.prototype.updateScore = function() {
 // Instantiating objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
-player = new Player(200, 380);
+player = new Player(200, 390);
 enemy1 = new Enemy(-90, 53, Enemy.prototype.changeSpeed());
 enemy2 = new Enemy(-90, 136, Enemy.prototype.changeSpeed());
 enemy3 = new Enemy(-90, 219, Enemy.prototype.changeSpeed());
