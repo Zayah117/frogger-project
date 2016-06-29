@@ -1,19 +1,19 @@
 // Array of all possible enemy sprites
 spriteArray = [ 'images/red-car.png',
-	   			'images/black-car.png',
-        		'images/blue-car.png',
-        		'images/blue-truck.png',
-        		'images/food-truck.png',
-        		'images/ghost-car.png',
-        		'images/gray-car.png',
-        		'images/green-car.png',
-        		'images/green-truck.png',
-        		'images/purple-car.png',
-        		'images/red-truck.png',
-        		'images/yellow-car.png',
-        		'images/yellow-truck.png',
-        		'images/police-car.png',
-        		'images/fight-truck.png'];
+				'images/black-car.png',
+				'images/blue-car.png',
+				'images/blue-truck.png',
+				'images/food-truck.png',
+				'images/ghost-car.png',
+				'images/gray-car.png',
+				'images/green-car.png',
+				'images/green-truck.png',
+				'images/purple-car.png',
+				'images/red-truck.png',
+				'images/yellow-car.png',
+				'images/yellow-truck.png',
+				'images/police-car.png',
+				'images/fight-truck.png'];
 
 // Enemies our player must avoid
 var Enemy = function(x, y, speed) {
