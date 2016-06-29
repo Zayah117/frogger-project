@@ -54,8 +54,7 @@ Enemy.prototype.update = function(dt) {
 		// Randomly change car speed and color
 		this.speed = this.changeSpeed();
 		this.sprite = this.changeColor();
-	}
-	else {
+	} else {
 		this.x += (this.speed * dt);
 	}
 
@@ -153,16 +152,14 @@ Player.prototype.validMove = function(key) {
 	if (key == 'up') {
 		if (this.y <= this.minY) {
 			return false;
-		}
-		else {
+		} else {
 			return true;
 		}
 	}
 	if (key == 'down') {
 		if (this.y >= this.maxY) {
 			return false;
-		}
-		else {
+		} else {
 			return true;
 		}
 		
@@ -170,16 +167,14 @@ Player.prototype.validMove = function(key) {
 	if (key == 'left') {
 		if (this.x <= this.minX) {
 			return false;
-		}
-		else {
+		} else {
 			return true;
 		}
 	}
 	if (key == 'right') {
 		if (this.x >= this.maxX) {
 			return false;
-		}
-		else {
+		} else {
 			return true;
 		}
 	}
